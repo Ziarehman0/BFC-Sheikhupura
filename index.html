@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f0f12">
+<title>BFC | Fast Food & Mega Deals</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Righteous&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="smooth-scroll">
+
+            <!-- === NAVBAR ==== -->
+<nav class="main-navbar">
+<div class="nav-inner">
+
+<a href="#home" class="brand-logo">
+<i class="fa-solid fa-utensils"></i><span>BFC</span>
+</a>
+
+<div class="desktop-nav-links">
+<a href="#home">Home</a>
+<a href="#mega-deals">Mega Meals</a>
+<a href="#deals">Special Deals</a>
+<a href="#pizza">Pizza</a>
+<a href="#burgers">Burgers & Menu</a>
+<a href="#branches">Branches</a>
+</div>
+
+<div class="nav-actions">
+<button onclick="openCallModal()" class="nav-call-btn">
+<i class="fa-solid fa-phone"></i><span>Call Now</span>
+</button>
+
+<button onclick="openCartModal()" class="cart-nav-btn" aria-label="Open Cart">
+<i class="fa-solid fa-basket-shopping"></i>
+<span class="cart-nav-label">Cart</span>
+<span id="cart-count" class="cart-count">0</span>
+</button>
+
+<button onclick="toggleMobileMenu()" class="mobile-menu-btn" aria-label="Open Menu">
+<i class="fa-solid fa-bars"></i>
+</button>
+</div>
+
+</div>
+
+<div id="mobile-menu" class="mobile-menu">
+<a href="#home" onclick="closeMobileMenu()">Home</a>
+<a href="#mega-deals" onclick="closeMobileMenu()">Mega Meals</a>
+<a href="#deals" onclick="closeMobileMenu()">Special Deals</a>
+<a href="#pizza" onclick="closeMobileMenu()">Pizza</a>
+<a href="#burgers" onclick="closeMobileMenu()">Burgers & Menu</a>
+<a href="#branches" onclick="closeMobileMenu()">Branches</a>
+</div>
+</nav>
+
+
+<!-- ==================== CALL MODAL ==================== -->
+<div id="call-modal" class="modal-overlay">
+<div class="modal-box call-modal-box">
+
+<button onclick="closeCallModal()" class="modal-close">
+<i class="fa-solid fa-times"></i>
+</button>
+
+<h3 class="modal-title">
+<i class="fa-solid fa-phone"></i>Select Branch
+</h3>
+
+<p class="modal-subtitle">Apni nearest branch par call karein</p>
+
+<div class="branch-modal-list">
+
+<div class="branch-modal-card">
+<strong>Branch 1 - Housing Colony</strong>
+<div class="phone-buttons">
+<a href="tel:0563501212">056-3501212</a>
+<a href="tel:03446608001">0344-6608001</a>
+<a href="tel:03329440410">0332-9440410</a>
+</div>
+</div>
+
+<div class="branch-modal-card">
+<strong>Branch 2 - Sadar Chowk</strong>
+<div class="phone-buttons">
+<a href="tel:0563545710">056-3545710</a>
+<a href="tel:03274041010">0327-4041010</a>
+<a href="tel:03400966669">0340-0966669</a>
+</div>
+</div>
+
+<div class="branch-modal-card">
+<strong>Branch 3 - Joiyan Wala Mor</strong>
+<div class="phone-buttons">
+<a href="tel:03279440404">0327-9440404</a>
+<a href="tel:03149440427">0314-9440427</a>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- ==================== WHATSAPP MODAL ==================== -->
+<div id="wa-modal" class="modal-overlay">
+<div class="modal-box">
+
+<button onclick="closeWhatsappModal()" class="modal-close">
+<i class="fa-solid fa-times"></i>
+</button>
+
+<h3 class="modal-title">
+<i class="fa-brands fa-whatsapp"></i>Select Branch
+</h3>
+
+<p class="modal-subtitle">Apni nearest branch par WhatsApp order karein</p>
+
+<div class="branch-modal-list">
+
+<button onclick="openWhatsapp('923329440410')" class="whatsapp-branch-btn">
+<strong>Branch 1 - Housing Colony</strong>
+<span>Main Market, Sheikhupura</span>
+</button>
+
+<button onclick="openWhatsapp('923274041010')" class="whatsapp-branch-btn">
+<strong>Branch 2 - Sadar Chowk</strong>
+<span>Near Ghanta Ghar, Sheikhupura</span>
+</button>
+
+<button onclick="openWhatsapp('923279440404')" class="whatsapp-branch-btn">
+<strong>Branch 3 - Joiyan Wala Mor</strong>
+<span>Muridke Road, Sheikhupura</span>
+</button>
+
+</div>
+</div>
+</div>
+
+
+<!-- ==================== CART MODAL ==================== -->
+<div id="cart-modal" class="modal-overlay">
+<div class="modal-box cart-modal-box">
+
+<button onclick="closeCartModal()" class="modal-close">
+<i class="fa-solid fa-times"></i>
+</button>
+
+<div class="cart-header">
+<div>
+<h3 class="modal-title">
+<i class="fa-solid fa-basket-shopping"></i>Your Basket
+</h3>
+<p class="modal-subtitle">Aapki selected deals yahan hain</p>
+</div>
+
+<button onclick="clearCart()" class="clear-cart-btn">Clear</button>
+</div>
+
+<div id="cart-items" class="cart-items"></div>
+
+<div class="cart-empty" id="cart-empty">
+<i class="fa-solid fa-basket-shopping"></i>
+<h4>Your cart is empty</h4>
+<p>Menu se koi deal ya item add karein.</p>
+</div>
+
+<div id="cart-footer" class="cart-footer hidden">
+<div class="cart-total-row">
+<span>Total</span>
+<strong id="cart-total-price">Rs. 0</strong>
+</div>
+
+<div class="checkout-methods">
+<button onclick="selectOrderType('delivery')" class="checkout-method-btn">
+<i class="fa-solid fa-truck"></i><span>Delivery</span>
+</button>
+
+<button onclick="selectOrderType('pickup')" class="checkout-method-btn">
+<i class="fa-solid fa-store"></i><span>Pickup</span>
+</button>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- ==================== HOME / MEGA DEAL SLIDER ==================== -->
+<section id="home" class="deal-banner-section">
+
+<div class="deal-slider" id="deal-slider">
+
+<!-- Meal 11 -->
+<article class="deal-slide active">
+
+<div class="deal-image-area pizza-banner">
+<img src="https://images.pexels.com/photos/5903100/pexels-photo-5903100.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Two large pizzas">
+<div class="image-overlay"></div>
+
+<div class="pizza-quantity">
+<span>🍕</span><b>2x Large</b><span>🍕</span>
+</div>
+</div>
+
+<div class="deal-content">
+<span class="deal-kicker">MEGA FAMILY OFFER</span>
+
+<h2>MEAL <strong>11</strong></h2>
+
+<div class="deal-big-text">
+2 LARGE<br>PIZZAS
+</div>
+
+<p>2 Large Ultimate Sizzling Pizzas + 1.5 Liter Cold Drink</p>
+
+<div class="deal-bottom">
+<span class="deal-price">Rs. 2600</span>
+
+<button onclick="addToCart('Meal 11', 2600)" class="banner-order-btn">
+Add to Cart <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+
+</article>
+
+
+<!-- Meal 2 -->
+<article class="deal-slide">
+
+<div class="deal-image-area burger-banner">
+<div id="meal2-burgers" class="burger-collage five-burgers"></div>
+<div class="burger-glow"></div>
+
+<div class="quantity-stamp">
+<span>5X</span><small>ZINGER</small>
+</div>
+</div>
+
+<div class="deal-content">
+<span class="deal-kicker">ZINGER PARTY DEAL</span>
+
+<h2>MEAL <strong>2</strong></h2>
+
+<div class="deal-big-text">
+5X ZINGER<br>BURGERS
+</div>
+
+<p>5 crispy signature Zinger Burgers + 1.5 Liter Drink</p>
+
+<div class="deal-bottom">
+<span class="deal-price">Rs. 1900</span>
+
+<button onclick="addToCart('Meal 2', 1900)" class="banner-order-btn">
+Add to Cart <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+
+</article>
+
+
+<!-- Meal 3 -->
+<article class="deal-slide">
+
+<div class="deal-image-area burger-banner meal3-banner">
+<div id="meal3-burgers" class="burger-collage ten-burgers"></div>
+<div class="burger-glow"></div>
+
+<div class="quantity-stamp mega-stamp">
+<span>10X</span><small>ZINGER</small>
+</div>
+</div>
+
+<div class="deal-content">
+<span class="deal-kicker">ULTIMATE ZINGER FEAST</span>
+
+<h2>MEAL <strong>3</strong></h2>
+
+<div class="deal-big-text">
+10X ZINGER<br>BURGERS
+</div>
+
+<p>10 fully loaded Zinger Burgers + 2 × 1.5 Liter Drinks</p>
+
+<div class="deal-bottom">
+<span class="deal-price">Rs. 3750</span>
+
+<button onclick="addToCart('Meal 3', 3750)" class="banner-order-btn">
+Add to Cart <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+
+</article>
+
+</div>
+
+<button class="slider-arrow slider-prev" onclick="changeSlide(-1)">
+<i class="fa-solid fa-chevron-left"></i>
+</button>
+
+<button class="slider-arrow slider-next" onclick="changeSlide(1)">
+<i class="fa-solid fa-chevron-right"></i>
+</button>
+
+<div class="slider-dots">
+<button onclick="goToSlide(0)" class="active"></button>
+<button onclick="goToSlide(1)"></button>
+<button onclick="goToSlide(2)"></button>
+</div>
+
+</section>
+
+
+<!-- ==================== MEGA COMBO MEALS ==================== -->
+<section id="mega-deals" class="content-section">
+
+<div class="section-heading reveal">
+<h2>Our <span>Combo Mega Meals</span></h2>
+<p>Bundled to satisfy families, groups, and ultimate hunger cravings at highly competitive rates.</p>
+</div>
+
+<div class="meal-grid">
+
+<!-- Meal 1 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 1</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 01.jpeg">
+</div>
+<h3>3 Zinger Burger Pack</h3>
+<p>Includes 3 crispy premium chicken zinger burgers paired with 1 Liter soft drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 1180</span>
+    <button onclick="addToCart('Meal 1', 1180)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 2 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 2</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 2.jpeg">
+</div>
+<h3>5 Zinger Burgers Pack</h3>
+<p>Includes 5 crispy premium chicken zinger burgers paired with a 1.5 Liter chilled soft drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 1900</span>
+    <button onclick="addToCart('Meal 2', 1900)">Add Order</button>
+</div>
+</div>
+
+
+<!-- Meal 3 -->
+<div class="meal-card scale-up featured-card">
+<span class="meal-label">Meal 3</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 3.jpeg">
+</div>
+<h3>10 Zinger Mega Feast</h3>
+<p>Massive bundle of 10 fully loaded Zinger Burgers complete with two 1.5 Liter drinks.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 3750</span>
+<button onclick="addToCart('Meal 3', 3750)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 4 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 4</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 4.jpeg">
+</div>
+<h3>Pizza & Zinger Duo</h3>
+<p>2 Zinger Burgers + 1 Small Pizza + 1 Liter standard cold drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 1350</span>
+<button onclick="addToCart('Meal 4', 1350)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 5 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 5</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 5.jpeg">
+</div>
+<h3>Variety Fusion Box</h3>
+<p>1 Medium Pizza + 5 Hot Wings + 3 Zinger Burgers + 1 Family Fries + 1.5L Drink.</p>
+<div class="meal-card-bottom">
+<span>Rs. 2900</span>
+<button onclick="addToCart('Meal 5', 2900)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 6 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 6</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 6.jpeg">
+</div>
+<h3>Large Party Extravaganza</h3>
+<p>1 Large Pizza + 5 Zinger Burgers + Family Fries + 1.5 Liter Drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 3500</span>
+<button onclick="addToCart('Meal 6', 3500)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 7 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 7</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 7.jpeg">
+</div>
+<h3>Zee Shawarma Trio</h3>
+<p>3 Zee Shawarmas grilled to perfection, bundled with a 1 Liter Drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 1100</span>
+<button onclick="addToCart('Meal 7', 1100)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 8 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 8</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 8.jpeg">
+</div>
+<h3>Medium Pizza Combo</h3>
+<p>2 Medium loaded Pizzas + 3 crispy Zinger Burgers + 1.5 Liter Drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 3250</span>
+<button onclick="addToCart('Meal 8', 3250)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 9 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 9</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 9.jpeg" alt="">
+</div>
+<h3>Double Small Pizza Club</h3>
+<p>2 fresh Small Pizzas + 1 Liter Drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 1150</span>
+<button onclick="addToCart('Meal 9', 1150)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 10 -->
+<div class="meal-card scale-up">
+<span class="meal-label">Meal 10</span>
+<div class="meal-icon">🍕
+    <img src="Meals/Meal 10.jpeg">
+</div>
+<h3>Double Medium Pizza Deal</h3>
+<p>2 Medium Pizzas served fresh with 1 Liter chilled drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 2150</span>
+<button onclick="addToCart('Meal 10', 2150)">Add Order</button>
+</div>
+</div>
+
+<!-- Meal 11 -->
+<div class="meal-card scale-up featured-card">
+<span class="meal-label">Meal 11</span>
+<div class="meal-icon">
+    <img src="Meals/Meal 11.jpeg">
+</div>
+<h3>Double Large Double Feast</h3>
+<p>2 Large ultimate sizzling pizzas coupled alongside a 1.5 Liter cold drink.</p>
+<div class="meal-card-bottom">
+    <span>Rs. 2600</span>
+<button onclick="addToCart('Meal 11', 2600)">Add Order</button>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ==================== PIZZA MENU ==================== -->
+<section id="pizza" class="content-section">
+
+<div class="section-heading reveal">
+<h2><span>Pizza</span> Menu</h2>
+<p>Freshly baked, loaded with flavor - hot & cheesy every single time.</p>
+</div>
+
+
+<!-- ==================== SPECIAL DEALS / 14" PIZZA ==================== -->
+<div id="deals" class="menu-subsection reveal">
+
+<h3>Special Pizza 14"</h3>
+
+<div class="mini-grid">
+
+<div class="mini-card" onclick="addToCart('Star Kabab Pizza', 1800)" style="cursor:pointer">
+<div>🍕</div><strong>Star Kabab Pizza</strong><span>Rs. 1800</span>
+</div>
+
+<div class="mini-card" onclick="addToCart('Kabab Bite Pizza', 1800)" style="cursor:pointer">
+<div>🍕</div><strong>Kabab Bite Pizza</strong><span>Rs. 1800</span>
+</div>
+
+<div class="mini-card" onclick="addToCart('Lazania Pizza', 1800)" style="cursor:pointer">
+<div>🍕</div><strong>Lazania Pizza</strong><span>Rs. 1800</span>
+</div>
+
+<div class="mini-card" onclick="addToCart('Seekh Kabab Pizza', 1600)" style="cursor:pointer">
+<div>🍕</div><strong>Seekh Kabab Pizza</strong><span>Rs. 1600</span>
+</div>
+
+<div class="mini-card" onclick="addToCart('Malai Boti Pizza', 1600)" style="cursor:pointer">
+<div>🍕</div><strong>Malai Boti Pizza</strong><span>Rs. 1600</span>
+</div>
+
+</div>
+</div>
+
+
+<!-- ==================== PIZZA COMBOS ==================== -->
+<div class="menu-subsection reveal">
+
+<h3>Pizza Combos</h3>
+
+<div class="combo-grid">
+
+<div class="combo-card">
+<div class="combo-emoji">🍕🥤</div>
+<h4>Combo - 1</h4>
+<p>1 Regular Pizza + 1 Regular Drink</p>
+<strong>Rs. 600</strong>
+<button onclick="addToCart('Pizza Combo 1', 600)">Add Order</button>
+</div>
+
+<div class="combo-card">
+<div class="combo-emoji">🍕🥤</div>
+<h4>Combo - 2</h4>
+<p>1 Medium Pizza + 1 Ltr Drink</p>
+<strong>Rs. 1150</strong>
+<button onclick="addToCart('Pizza Combo 2', 1150)">Add Order</button>
+</div>
+
+<div class="combo-card">
+<div class="combo-emoji">🍕🥤</div>
+<h4>Combo - 3</h4>
+<p>1 Large Pizza + 1 Ltr Drink</p>
+<strong>Rs. 1350</strong>
+<button onclick="addToCart('Pizza Combo 3', 1350)">Add Order</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- ==================== FULL PIZZA MENU ==================== -->
+<div class="reveal">
+
+<div class="table-heading">
+<h3>Full Pizza Menu</h3>
+<div><span>Extra Cheese:</span> Rs. 100 | 150 | 200 | 300</div>
+</div>
+
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>#</th><th>Pizza</th><th>S8"</th><th>M11"</th><th>L14"</th><th>L18"</th><th>Order</th>
+</tr>
+</thead>
+<tbody id="pizza-table-body"></tbody>
+</table>
+</div>
+
+</div>
+</section>
+
+
+<!-- ==================== BURGERS & MENU ==================== -->
+<section id="burgers" class="content-section">
+
+<div class="section-heading reveal">
+<h2><span>Menu Choices</span></h2>
+<p>Pick single servings of your absolute hot favorites.</p>
+</div>
+
+<div class="menu-columns">
+
+
+<!-- ==================== BURGERS & SANDWICHES ==================== -->
+<div class="menu-column slide-left">
+
+<h3>
+<i class="fa-solid fa-burger"></i>
+Burgers & Sandwiches
+</h3>
+
+<div class="menu-list">
+
+<div class="menu-item">
+<div><h4>Zinger Tower Burger</h4><p>Premium extra tall crispy fillet stacked up</p></div>
+<span>Rs. 600</span>
+<button onclick="addToCart('Zinger Tower Burger', 600)">Add Order</button>
+</div>
+
+<div class="menu-item">
+<div><h4>Zinger Mighty Burger</h4><p>Double patty double crisp supreme</p></div>
+<span>Rs. 550</span>
+<button onclick="addToCart('Zinger Mighty Burger', 550)">Add Order</button>
+</div>
+
+<div class="menu-item">
+<div><h4>Chicken Burger</h4><p>Classic tender succulent white meat patty</p></div>
+<span>Rs. 300</span>
+<button onclick="addToCart('Chicken Burger', 300)">Add Order</button>
+</div>
+
+<div class="menu-item">
+<div><h4>Jumbo Oven Baked Burger</h4><p>Baked to cheesy golden brown perfection</p></div>
+<span>Rs. 650</span>
+<button onclick="addToCart('Jumbo Oven Baked Burger', 650)">Add Order</button>
+</div>
+
+<div class="menu-item">
+<div><h4>Chapli Burger</h4><p>Desi spiced traditional patty</p></div>
+<span>Rs. 300</span>
+<button onclick="addToCart('Chapli Burger', 300)">Add Order</button>
+</div>
+
+<div class="menu-item">
+<div><h4>Club Sandwich</h4><p>Classic layered bread with egg and chicken filling</p></div>
+<span>Rs. 400</span>
+<button onclick="addToCart('Club Sandwich', 400)">Add Order</button>
+</div>
+
+<div class="menu-item">
+<div><h4>Hot Bite Box</h4><p>Fiery flavor profile packed treats</p></div>
+<span>Rs. 600</span>
+<button onclick="addToCart('Hot Bite Box', 600)">Add Order</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- ==================== ROLLS, PASTA & SIDES ==================== -->
+<div class="menu-column slide-right">
+
+<h3>
+<i class="fa-solid fa-hotdog"></i>
+Rolls, Pasta & Sides
+</h3>
+
+<div class="menu-list">
+
+
+<!-- Rolls -->
+<div class="roll-grid">
+
+<div class="roll-card">
+<strong>Zee Shawarma</strong><span>Rs. 330</span>
+<button onclick="addToCart('Zee Shawarma', 330)">Add Order</button>
+</div>
+
+<div class="roll-card">
+<strong>Paratha Roll</strong><span>Rs. 360</span>
+<button onclick="addToCart('Paratha Roll', 360)">Add Order</button>
+</div>
+
+<div class="roll-card">
+<strong>Kabab Roll</strong><span>Rs. 380</span>
+<button onclick="addToCart('Kabab Roll', 380)">Add Order</button>
+</div>
+
+</div>
+
+
+<!-- Pasta -->
+<div class="menu-item">
+<div>
+<h4>Premium Baked Pasta</h4>
+<p>Rich creamy white sauce with bubbling cheese</p>
+</div>
+<span>Rs. 750</span>
+<button onclick="addToCart('Premium Baked Pasta', 750)">Add Order</button>
+</div>
+
+
+<!-- Standalone Zinger -->
+<div class="menu-item">
+<div>
+<h4>Standalone Zinger Burger</h4>
+<p>Single classic crispy zinger fillet</p>
+</div>
+<span>Rs. 360</span>
+<button onclick="addToCart('Standalone Zinger Burger', 360)">Add Order</button>
+</div>
+
+
+<!-- ==================== WINGS & FRIED CHICKEN ==================== -->
+<div class="info-card">
+
+<h4>
+<i class="fa-solid fa-pepper-hot"></i>
+Wings & Fried Chicken
+</h4>
+
+<div class="two-column-info">
+
+<div>
+Chicken Piece (1pc): <b>Rs. 250</b>
+<button onclick="addToCart('Chicken Piece 1pc', 250)">Add Order</button>
+</div>
+
+<div>
+Chicken Pieces (5pc): <b>Rs. 1200</b>
+<button onclick="addToCart('Chicken Pieces 5pc', 1200)">Add Order</button>
+</div>
+
+<div>
+Hot Wings (6pc): <b>Rs. 350</b>
+<button onclick="addToCart('Hot Wings 6pc', 350)">Add Order</button>
+</div>
+
+<div>
+Hot Wings (12pc): <b>Rs. 700</b>
+<button onclick="addToCart('Hot Wings 12pc', 700)">Add Order</button>
+</div>
+
+<div>
+Garlic Wings (6pc): <b>Rs. 400</b>
+<button onclick="addToCart('Garlic Wings 6pc', 400)">Add Order</button>
+</div>
+
+<div>
+Garlic Wings (12pc): <b>Rs. 800</b>
+<button onclick="addToCart('Garlic Wings 12pc', 800)">Add Order</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- ==================== GOLDEN CRISPY FRIES ==================== -->
+<div class="info-card">
+
+<h4>
+<i class="fa-solid fa-french-fries"></i>
+Golden Crispy Fries
+</h4>
+
+<div class="fries-grid">
+
+<div>
+Regular Fries <b>Rs. 250</b>
+<button onclick="addToCart('Regular Fries', 250)">Add Order</button>
+</div>
+
+<div>
+Family Fries <b>Rs. 400</b>
+<button onclick="addToCart('Family Fries', 400)">Add Order</button>
+</div>
+
+<div>
+Loaded Fries <b>Rs. 750</b>
+<button onclick="addToCart('Loaded Fries', 750)">Add Order</button>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ==================== CART NOTIFICATION ==================== -->
+<div id="cart-notification" class="cart-notification">
+<i class="fa-solid fa-circle-check"></i>
+<span id="cart-text">Item added to cart!</span>
+</div>
+
+
+<!-- ==================== WHATSAPP FLOATING BUTTON ==================== -->
+<div class="whatsapp-float">
+<button onclick="openWhatsappModal()" aria-label="WhatsApp Order">
+<i class="fa-brands fa-whatsapp"></i>
+</button>
+</div>
+
+
+<!-- ==================== BRANCHES ==================== -->
+<section id="branches" class="content-section">
+
+<div class="section-heading reveal">
+<h2>Our <span>Branches</span></h2>
+<p>Visit us or order from your nearest BFC branch.</p>
+</div>
+
+<div class="branches-grid">
+
+
+<!-- Branch 1 -->
+<div class="branch-card scale-up">
+
+<div class="branch-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+
+<h3>Branch 1</h3>
+
+<p>Housing Colony, Main Market, Sheikhupura</p>
+
+<div class="branch-phones">
+<a href="tel:0563501212">056-3501212</a>
+<a href="tel:03446608001">0344-6608001</a>
+<a href="tel:03329440410">0332-9440410</a>
+</div>
+
+<button onclick="openWhatsapp('923329440410')" class="branch-whatsapp">
+<i class="fa-brands fa-whatsapp"></i>
+WhatsApp This Branch
+</button>
+
+</div>
+
+
+<!-- Branch 2 -->
+<div class="branch-card scale-up">
+
+<div class="branch-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+
+<h3>Branch 2</h3>
+
+<p>Sadar Chowk, Near Ghanta Ghar, Sheikhupura</p>
+
+<div class="branch-phones">
+<a href="tel:0563545710">056-3545710</a>
+<a href="tel:03274041010">0327-4041010</a>
+<a href="tel:03400966669">0340-0966669</a>
+</div>
+
+<button onclick="openWhatsapp('923274041010')" class="branch-whatsapp">
+<i class="fa-brands fa-whatsapp"></i>
+WhatsApp This Branch
+</button>
+
+</div>
+
+
+<!-- Branch 3 -->
+<div class="branch-card scale-up">
+
+<div class="branch-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+
+<h3>Branch 3</h3>
+
+<p>Joiyan Wala Mor, Muridke Road, Sheikhupura</p>
+
+<div class="branch-phones">
+<a href="tel:03279440404">0327-9440404</a>
+<a href="tel:03149440427">0314-9440427</a>
+</div>
+
+<button onclick="openWhatsapp('923279440404')" class="branch-whatsapp">
+<i class="fa-brands fa-whatsapp"></i>
+WhatsApp This Branch
+</button>
+
+</div>
+
+</div>
+
+<div class="delivery-note reveal">
+<i class="fa-solid fa-motorcycle"></i>
+Free Home Delivery — 30-45 min, minimum order Rs. 500/-
+</div>
+
+</section>
+
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+
+<div class="footer-logo">BFC RESTAURANT</div>
+
+<p>© 2021 BFC Fast Food. All Rights Reserved.</p>
+
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

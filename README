@@ -1,0 +1,63 @@
+# BFC Fast Food - Website
+
+Fully animated, single-page restaurant website for **BFC (100% Hygienic)** with Mega Meals, Special Deals, full Pizza menu, A-la-carte menu, branch info, AI chatbot, and direct Call/WhatsApp ordering.
+
+## 📁 Files
+
+| File | Description |
+|---|---|
+| `index.html` | Page structure/markup — navbar, hero, deals, pizza menu, branches, footer, modals |
+| `style.css` | All custom CSS — scroll animations, modals, chatbot popup, hover effects |
+| `script.js` | All JavaScript — scroll reveal animations, cart logic, Call/WhatsApp modals, pizza menu rendering, AI chatbot logic |
+
+Just keep all 3 files in the **same folder** and open `index.html` in a browser — no build step, no server required.
+
+## ✨ Features
+
+- **Heavy scroll animations** — sections fade/slide/scale in as you scroll (`reveal`, `scale-up`, `slide-left`, `slide-right` classes)
+- **Mega Combo Meals** — 11 bundled meal deals with "Add Order" cart feedback
+- **Special Budget Deals** — 6 value deals, each with an icon
+- **Full Pizza Section** — Special 14" pizzas, 3 combos, and a 15-item pizza menu table (S/M/L/XL pricing + extra cheese) — rendered dynamically from a JS data array
+- **A-la-carte Menu** — burgers, rolls, pasta, wings, fries
+- **Call Now button** — opens a modal to pick a branch, then calls that branch's number (`tel:` link)
+- **WhatsApp floating button** — opens a modal to pick a branch, then opens WhatsApp chat with that branch's number (`wa.me` link)
+- **Our Branches section** — full address + all phone numbers + WhatsApp button per branch
+- **AI Chatbot widget** — simple rule-based assistant (bottom-right) that responds about deals/pizza/burgers in Roman Urdu
+- **Fully responsive** — works on mobile and desktop, header buttons resize/compact on small screens
+
+## 🔧 Customization Guide
+
+### Change branch numbers / addresses
+Edit in **`index.html`**:
+- Call modal → search for `id="call-modal"`
+- WhatsApp modal → search for `id="wa-modal"`
+- Branches section → search for `id="branches"`
+
+Also update the default numbers passed into `openWhatsapp('92332...')` calls to match.
+
+### Change pizza menu items/prices
+Edit the `pizzaMenu` array at the top of **`script.js`** — each entry is:
+```js
+{ name: "Pizza Name", desc: "Ingredients", prices: ["S8", "M11", "L14", "L18"] }
+```
+The table renders automatically from this array via `renderPizzaMenu()`.
+
+### Change colors/theme
+Main accent color is amber (`amber-500` / `#F59E0B` in Tailwind classes) and dark background (`#0f0f12`). Search/replace these in `index.html` and `style.css` to re-theme.
+
+### Chatbot responses
+Edit the `sendChatMessage()` function in `script.js` — it does simple keyword matching (`deal`, `pizza`, `burger`, etc.) and can be extended with more keywords or hooked up to a real AI API later.
+
+## 🛠 Tech Stack
+
+- **Tailwind CSS** (via CDN) for utility styling
+- **Font Awesome 6** for icons
+- **Google Fonts** — Poppins (body) & Righteous (headings)
+- **Vanilla JavaScript** — no frameworks, no build tools
+
+## 🚀 Next Steps (optional upgrades)
+
+- Connect the AI chatbot to a real API (e.g. Gemini) for smarter replies instead of keyword matching
+- Connect "Add Order" buttons to an actual order/checkout system (e.g. via your n8n + WhatsApp Business API workflow)
+- Replace pizza icons with real product photos once available
+-
