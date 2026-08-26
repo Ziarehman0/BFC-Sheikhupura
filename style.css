@@ -1,4 +1,4 @@
-            /* === GLOBAL === */
+/* === GLOBAL === */
 
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -24,11 +24,13 @@ section{width:100%}
 ::-webkit-scrollbar-thumb{background:#f59e0b;border-radius:20px}
 
 
-        /* === NAVBAR === */
+/* === NAVBAR === */
 
 .main-navbar{
     position:fixed;
-    inset:0 0 auto;
+    top:0;
+    left:0;
+    right:0;
     z-index:1000;
     background:rgba(15,15,18,.94);
     backdrop-filter:blur(18px);
@@ -85,7 +87,7 @@ section{width:100%}
 }
 
 
-        /* === SEARCH BUTTON === */
+/* === SEARCH === */
 
 .nav-search-btn{
     height:42px;
@@ -105,9 +107,6 @@ section{width:100%}
 .nav-search-btn i{color:#fbbf24;font-size:15px}
 .nav-search-btn:hover{background:#fbbf24;color:#111;transform:translateY(-1px)}
 .nav-search-btn:hover i{color:#111}
-
-
-        /* === SEARCH MODAL === */
 
 .search-modal-box{
     width:min(650px,calc(100% - 30px));
@@ -143,10 +142,10 @@ section{width:100%}
     background:#18181c;
     color:#fff;
     font-size:15px;
-    transition:.25s ease;
 }
 
 #menu-search-input::placeholder{color:#777}
+
 #menu-search-input:focus{
     border-color:#fbbf24;
     box-shadow:0 0 0 3px rgba(251,191,36,.1);
@@ -167,9 +166,6 @@ section{width:100%}
 }
 
 #clear-search-btn:hover{background:rgba(255,255,255,.08);color:#fff}
-
-
-        /* === SEARCH RESULTS === */
 
 .search-results{
     max-height:55vh;
@@ -201,9 +197,6 @@ section{width:100%}
 .search-default-message p,
 .search-no-results p{font-size:14px}
 
-
-    /* === SEARCH RESULT CARD === */
-
 .search-result-item{
     display:flex;
     align-items:center;
@@ -214,12 +207,6 @@ section{width:100%}
     border:1px solid rgba(255,255,255,.08);
     border-radius:14px;
     background:#18181c;
-    transition:.2s ease;
-}
-
-.search-result-item:hover{
-    border-color:rgba(251,191,36,.5);
-    transform:translateY(-1px);
 }
 
 .search-result-info{min-width:0;flex:1}
@@ -244,7 +231,6 @@ section{width:100%}
     font-size:9px;
     font-weight:800;
     text-transform:uppercase;
-    letter-spacing:.5px;
 }
 
 .search-result-actions{
@@ -262,25 +248,13 @@ section{width:100%}
     border-radius:9px;
     font-size:11px;
     font-weight:700;
-    transition:.2s ease;
 }
 
 .search-view-btn{background:rgba(255,255,255,.08);color:#fff}
-.search-view-btn:hover{background:rgba(255,255,255,.15)}
 .search-add-btn{background:#fbbf24;color:#111}
-.search-add-btn:hover{background:#f59e0b}
 
 
-/* ====  SEARCH MOBILE   ==== */
-
-@media(max-width:768px){
-    .nav-search-btn{width:42px;padding:0}
-    .nav-search-btn span{display:none}
-    .search-modal-box{width:calc(100% - 20px);max-height:88vh}
-    .search-result-item{align-items:flex-start}
-    .search-result-actions{flex-direction:column}
-    .search-view-btn,.search-add-btn{width:82px}
-}
+/* === NAV ACTIONS === */
 
 .nav-call-btn,
 .cart-nav-btn{
@@ -293,16 +267,18 @@ section{width:100%}
     gap:7px;
     font-size:13px;
     font-weight:700;
-    transition:.25s ease;
     white-space:nowrap;
 }
 
 .nav-call-btn{background:transparent;color:#fff;border:1px solid #393940}
 .nav-call-btn i{color:#f59e0b}
-.nav-call-btn:hover{border-color:#f59e0b}
 
-.cart-nav-btn{position:relative;background:#18181c;color:#fff;border:1px solid #393940}
-.cart-nav-btn:hover{border-color:#f59e0b;color:#f59e0b}
+.cart-nav-btn{
+    position:relative;
+    background:#18181c;
+    color:#fff;
+    border:1px solid #393940;
+}
 
 .cart-count{
     min-width:20px;
@@ -329,10 +305,13 @@ section{width:100%}
     font-size:18px;
 }
 
+
+/* === MOBILE MENU === */
+
 .mobile-menu{display:none}
 
 
-        /* === HERO === */
+/* === HERO === */
 
 .hero-section{
     min-height:100vh;
@@ -395,13 +374,8 @@ section{width:100%}
 }
 
 .primary-btn{background:#f59e0b;color:#080808}
-.primary-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 30px rgba(245,158,11,.3);
-}
 
 .secondary-btn{border:1px solid #393940;color:#fff}
-.secondary-btn:hover{border-color:#f59e0b;color:#f59e0b}
 
 .hero-visual{
     width:min(42vw,500px);
@@ -430,18 +404,16 @@ section{width:100%}
     border-radius:50%;
     background:radial-gradient(circle,rgba(245,158,11,.15),rgba(245,158,11,.02));
     animation:floatFood 4s ease-in-out infinite;
-    box-shadow:0 0 80px rgba(245,158,11,.12),inset 0 0 40px rgba(245,158,11,.08);
 }
 
 .hero-food-circle i{
     position:absolute;
     color:#f59e0b;
-    filter:drop-shadow(0 10px 15px rgba(0,0,0,.5));
 }
 
 .hero-food-circle i:nth-child(1){font-size:100px;left:28%;top:27%}
-.hero-food-circle i:nth-child(2){font-size:60px;left:8%;bottom:17%;transform:rotate(-20deg)}
-.hero-food-circle i:nth-child(3){font-size:55px;right:8%;top:18%;transform:rotate(18deg)}
+.hero-food-circle i:nth-child(2){font-size:60px;left:8%;bottom:17%}
+.hero-food-circle i:nth-child(3){font-size:55px;right:8%;top:18%}
 
 @keyframes floatFood{
     0%,100%{transform:translateY(0) rotate(0)}
@@ -449,10 +421,9 @@ section{width:100%}
 }
 
 
-        /* === DEAL BANNER === */
+/* === DEAL BANNER === */
 
 .deal-banner-section{
-    position:relative;
     width:100%;
     max-width:1500px;
     margin:auto;
@@ -467,7 +438,6 @@ section{width:100%}
     border:1px solid #393940;
     border-radius:28px;
     background:#141418;
-    box-shadow:0 25px 70px rgba(0,0,0,.35);
 }
 
 .deal-slide{
@@ -478,7 +448,7 @@ section{width:100%}
     opacity:0;
     visibility:hidden;
     transform:scale(1.015);
-    transition:opacity .6s ease,transform .6s ease,visibility .6s;
+    transition:.6s ease;
 }
 
 .deal-slide.active{
@@ -503,9 +473,7 @@ section{width:100%}
 .image-overlay{
     position:absolute;
     inset:0;
-    background:
-        linear-gradient(90deg,rgba(8,8,10,.05),rgba(8,8,10,.35)),
-        linear-gradient(0deg,rgba(8,8,10,.3),transparent);
+    background:linear-gradient(90deg,rgba(8,8,10,.05),rgba(8,8,10,.35));
 }
 
 .pizza-quantity{
@@ -516,7 +484,6 @@ section{width:100%}
     border:1px solid rgba(245,158,11,.5);
     border-radius:999px;
     background:rgba(0,0,0,.75);
-    backdrop-filter:blur(10px);
     font-size:26px;
 }
 
@@ -527,9 +494,7 @@ section{width:100%}
     display:flex;
     flex-direction:column;
     justify-content:center;
-    background:
-        radial-gradient(circle at 100% 0%,rgba(245,158,11,.12),transparent 40%),
-        #141418;
+    background:#141418;
 }
 
 .deal-kicker{
@@ -550,12 +515,9 @@ section{width:100%}
 
 .deal-big-text{
     margin-top:20px;
-    color:#fff;
     font-size:clamp(32px,4vw,60px);
     font-weight:900;
     line-height:.95;
-    letter-spacing:-2px;
-    text-shadow:0 8px 30px rgba(0,0,0,.5);
 }
 
 .deal-content p{
@@ -581,14 +543,8 @@ section{width:100%}
     border-radius:12px;
     background:#f59e0b;
     color:#080808;
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
     font-weight:900;
-    transition:.25s ease;
 }
-
-.banner-order-btn:hover{background:#fbbf24;transform:translateY(-2px)}
 
 .slider-arrow{
     position:absolute;
@@ -601,11 +557,8 @@ section{width:100%}
     border-radius:50%;
     background:rgba(15,15,18,.75);
     color:#fff;
-    backdrop-filter:blur(10px);
-    transition:.25s ease;
 }
 
-.slider-arrow:hover{background:#f59e0b;color:#000}
 .slider-prev{left:25px}
 .slider-next{right:25px}
 
@@ -625,7 +578,6 @@ section{width:100%}
     border:0;
     border-radius:50%;
     background:#6b6b72;
-    transition:.25s ease;
 }
 
 .slider-dots button.active{
@@ -635,7 +587,7 @@ section{width:100%}
 }
 
 
-        /* === BURGER COLLAGES === */
+/* === BURGER === */
 
 .burger-banner{
     background:
@@ -666,15 +618,6 @@ section{width:100%}
     object-fit:cover;
     border:2px solid rgba(245,158,11,.45);
     border-radius:16px;
-    box-shadow:0 12px 30px rgba(0,0,0,.5);
-}
-
-.burger-glow{
-    position:absolute;
-    inset:25%;
-    background:rgba(245,158,11,.12);
-    filter:blur(70px);
-    pointer-events:none;
 }
 
 .quantity-stamp{
@@ -689,7 +632,6 @@ section{width:100%}
     border-radius:15px;
     background:rgba(0,0,0,.88);
     text-align:center;
-    box-shadow:0 12px 35px rgba(0,0,0,.55);
 }
 
 .quantity-stamp span{
@@ -698,21 +640,17 @@ section{width:100%}
     font-size:35px;
     line-height:1;
     font-weight:900;
-    font-style:italic;
 }
 
 .quantity-stamp small{
     display:block;
-    color:#fff;
     font-size:13px;
     letter-spacing:4px;
     font-weight:900;
 }
 
-.mega-stamp{min-width:190px}
 
-
-    /* === CONTENT === */
+/* === CONTENT === */
 
 .content-section{
     width:min(1400px,100%);
@@ -746,7 +684,7 @@ section{width:100%}
 .section-heading-left p{margin-left:0}
 
 
-        /* === MEAL CARDS === */
+/* === CARDS === */
 
 .meal-grid{
     display:grid;
@@ -762,16 +700,7 @@ section{width:100%}
     border:1px solid #2c2c32;
     border-radius:22px;
     background:linear-gradient(145deg,#1b1b20,#111115);
-    transition:.3s ease;
 }
-
-.meal-card:hover{
-    border-color:#f59e0b;
-    transform:translateY(-5px);
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
-}
-
-.featured-card{border-color:rgba(245,158,11,.35)}
 
 .meal-label{
     position:absolute;
@@ -780,10 +709,8 @@ section{width:100%}
     padding:6px 10px;
     border-radius:7px;
     background:#dc2626;
-    color:#fff;
     font-size:10px;
     font-weight:900;
-    text-transform:uppercase;
 }
 
 .meal-icon{
@@ -826,13 +753,12 @@ section{width:100%}
     border:0;
     border-radius:10px;
     background:#f59e0b;
-    color:#050505;
     font-size:12px;
     font-weight:900;
 }
 
 
-        /* === PIZZA === */
+/* === PIZZA / MENU === */
 
 .menu-subsection{margin-bottom:65px}
 
@@ -857,10 +783,7 @@ section{width:100%}
     border-radius:18px;
     background:#18181c;
     text-align:center;
-    transition:.25s ease;
 }
-
-.mini-card:hover{border-color:#f59e0b;transform:translateY(-4px)}
 
 .mini-card>div{
     width:55px;
@@ -887,7 +810,7 @@ section{width:100%}
     padding:28px;
     border:1px solid #2c2c32;
     border-radius:20px;
-    background:linear-gradient(145deg,#18181c,#101014);
+    background:#18181c;
     text-align:center;
 }
 
@@ -907,7 +830,6 @@ section{width:100%}
     border:0;
     border-radius:10px;
     background:#f59e0b;
-    color:#000;
     font-size:12px;
     font-weight:900;
 }
@@ -940,6 +862,7 @@ section{width:100%}
 }
 
 table{width:100%;min-width:720px;border-collapse:collapse}
+
 thead{background:#18181c}
 
 th{
@@ -955,10 +878,8 @@ td{
     font-size:13px;
 }
 
-.pizza-row:hover{background:rgba(245,158,11,.05)}
 
-
-        /* === BUDGET DEALS === */
+/* === BUDGET === */
 
 .budget-section{
     width:100%;
@@ -980,10 +901,7 @@ td{
     border:1px solid #28282e;
     border-radius:18px;
     background:#0f0f12;
-    transition:.3s ease;
 }
-
-.budget-card:hover{border-color:#f59e0b;transform:translateY(-4px)}
 
 .budget-icon{
     width:55px;
@@ -1028,13 +946,12 @@ td{
     border:0;
     border-radius:8px;
     background:#f59e0b;
-    color:#000;
     font-size:11px;
     font-weight:900;
 }
 
 
-    /* === MENU COLUMNS === */
+/* === MENU COLUMNS === */
 
 .menu-columns{
     display:grid;
@@ -1137,7 +1054,24 @@ td{
 .fries-grid b{display:block;margin-top:4px;color:#f59e0b}
 
 
-    /* === WHATSAPP === */
+/* === ORDER BUTTONS === */
+
+.menu-item>button,
+.roll-card>button,
+.two-column-info button,
+.fries-grid button{
+    padding:8px 14px;
+    border:0;
+    border-radius:8px;
+    background:linear-gradient(135deg,#fbbf24,#f59e0b);
+    color:#111;
+    font-size:12px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+
+/* === WHATSAPP === */
 
 .whatsapp-float{
     position:fixed;
@@ -1157,14 +1091,10 @@ td{
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow:0 12px 30px rgba(22,163,74,.35);
-    transition:.25s ease;
 }
 
-.whatsapp-float button:hover{transform:scale(1.08);background:#15803d}
 
-
-    /* === CART NOTIFICATION === */
+/* === CART === */
 
 .cart-notification{
     position:fixed;
@@ -1178,10 +1108,6 @@ td{
     color:#050505;
     font-size:12px;
     font-weight:900;
-    display:flex;
-    align-items:center;
-    gap:9px;
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
     transform:translateY(130px);
     opacity:0;
     transition:.3s ease;
@@ -1190,7 +1116,7 @@ td{
 .cart-notification.show{transform:translateY(0);opacity:1}
 
 
-        /* === BRANCHES === */
+/* === BRANCHES === */
 
 .branches-grid{
     display:grid;
@@ -1203,10 +1129,7 @@ td{
     border:1px solid #29292f;
     border-radius:20px;
     background:#18181c;
-    transition:.3s ease;
 }
-
-.branch-card:hover{border-color:#f59e0b;transform:translateY(-4px)}
 
 .branch-icon{
     width:48px;
@@ -1235,7 +1158,6 @@ td{
 }
 
 .branch-phones a{color:#ccc;font-size:12px}
-.branch-phones a:hover{color:#f59e0b}
 
 .branch-whatsapp{
     width:100%;
@@ -1262,7 +1184,7 @@ td{
 }
 
 
-        /* === MODALS === */
+/* === MODALS === */
 
 .modal-overlay{
     display:none;
@@ -1287,13 +1209,6 @@ td{
     border:1px solid #303038;
     border-radius:22px;
     background:#18181c;
-    box-shadow:0 30px 100px rgba(0,0,0,.6);
-    animation:modalPop .25s ease;
-}
-
-@keyframes modalPop{
-    from{opacity:0;transform:scale(.93) translateY(10px)}
-    to{opacity:1;transform:scale(1) translateY(0)}
 }
 
 .modal-close{
@@ -1308,15 +1223,12 @@ td{
     color:#aaa;
 }
 
-.modal-close:hover{color:#fff;background:#dc2626}
-
 .modal-title{
     color:#f59e0b;
     font-family:'Righteous',cursive;
     font-size:24px;
 }
 
-.modal-title i{margin-right:7px}
 .modal-subtitle{margin-top:4px;color:#888890;font-size:11px}
 
 .branch-modal-list{
@@ -1368,7 +1280,7 @@ td{
 .whatsapp-branch-btn span{margin-top:2px;color:#888890;font-size:10px}
 
 
-        /* === CART === */
+/* === CART MODAL === */
 
 .cart-modal-box{width:min(550px,100%)}
 
@@ -1389,8 +1301,6 @@ td{
     font-size:10px;
     font-weight:800;
 }
-
-.clear-cart-btn:hover{background:#ef4444;color:#fff}
 
 .cart-items{
     max-height:380px;
@@ -1445,7 +1355,7 @@ td{
 }
 
 .remove-item-btn{
-    margin-left:5px;
+    margin-left: 5px;
     border:0;
     background:rgba(220,38,38,.12);
     color:#ef4444;
@@ -1476,370 +1386,8 @@ td{
 .cart-total-row span{color:#aaaab1;font-size:13px}
 .cart-total-row strong{color:#f59e0b;font-size:25px}
 
-/* .checkout-btn {
-    width: 100%;
-    margin-top: 15px;
-    padding: 13px;
-    border: 0;
-    border-radius: 11px;
-    background: #16a34a;
-    color: #fff;
-    font-weight: 900;
-}
 
-.checkout-btn:hover {
-    background: #15803d;
-} */
-
-.hidden{display:none!important}
-
-
-        /* === FOOTER === */
-
-footer{
-    padding:50px 20px;
-    border-top:1px solid #1f1f24;
-    background:#0b0b0d;
-    color:#66666e;
-    font-size:12px;
-    text-align:center;
-}
-
-.footer-logo{
-    margin-bottom:7px;
-    color:#f59e0b;
-    font-family:'Righteous',cursive;
-    font-size:21px;
-}
-
-
-        /* === ANIMATIONS === */
-
-.reveal,
-.scale-up,
-.slide-left,
-.slide-right{transition:1s all ease}
-
-.reveal{transform:translateY(70px);opacity:0}
-.reveal.active{transform:translateY(0);opacity:1}
-
-.scale-up{transform:scale(.92);opacity:0}
-.scale-up.active{transform:scale(1);opacity:1}
-
-.slide-left{transform:translateX(-70px);opacity:0}
-.slide-left.active{transform:translateX(0);opacity:1}
-
-.slide-right{transform:translateX(70px);opacity:0}
-.slide-right.active{transform:translateX(0);opacity:1}
-
-
-        /* === TABLET === */
-
-@media(max-width:1100px){
-    .desktop-nav-links{gap:13px}
-    .desktop-nav-links a{font-size:12px}
-    .nav-call-btn span{display:none}
-
-    .meal-grid,
-    .budget-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-
-    .mini-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .branches-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-
-    .deal-slide{grid-template-columns:1fr 1fr}
-    .deal-image-area,
-    .deal-slider{min-height:450px}
-}
-
-
-        /* === MOBILE / TABLET === */
-
-@media(max-width:800px){
-
-    .nav-inner{
-        min-height:65px;
-        padding:10px 14px;
-    }
-
-    .brand-logo{font-size:24px}
-    .desktop-nav-links{display:none}
-
-    .nav-call-btn{
-        width:46px;
-        height:46px;
-        min-height:46px;
-        padding:0;
-        border-radius:50%;
-    }
-
-    .cart-nav-btn{
-        height:50px;
-        min-height:46px;
-        padding:0 20px;
-        margin:0 5px;
-        gap:1px;
-    }
-
-    .nav-call-btn span,
-    .cart-nav-label{display:none}
-
-    .cart-nav-btn i,
-    .cart-nav-btn svg{
-        width:18px;
-        height:18px;
-        flex-shrink:0;
-    }
-
-    .mobile-menu-btn{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-    }
-
-    .mobile-menu{
-        display:none;
-        padding:10px 15px 15px;
-        border-top:1px solid #29292f;
-        background:rgba(15,15,18,.98);
-    }
-
-    .mobile-menu.open{
-        display:flex;
-        flex-direction:column;
-    }
-
-    .mobile-menu a{
-        padding:12px 5px;
-        border-bottom:1px solid #24242a;
-        color:#bbb;
-        font-size:13px;
-        font-weight:700;
-    }
-
-    .mobile-menu a:hover{color:#f59e0b}
-
-    .hero-section{
-        min-height:auto;
-        padding:115px 18px 55px;
-        flex-direction:column;
-        text-align:center;
-        gap:45px;
-    }
-
-    .hero-buttons{justify-content:center}
-    .hero-visual{width:min(78vw,380px)}
-
-    .deal-banner-section{padding:15px 12px 55px}
-
-    .deal-slider{
-        min-height:680px;
-        border-radius:20px;
-    }
-
-    .deal-slide{
-        grid-template-columns:1fr;
-        grid-template-rows:340px 1fr;
-    }
-
-    .deal-image-area{min-height:340px}
-    .deal-content{padding:25px;justify-content:flex-start}
-    .deal-big-text{font-size:38px}
-    .deal-content h2{font-size:34px}
-
-    .five-burgers{grid-template-columns:repeat(5,1fr)}
-    .ten-burgers{
-        grid-template-columns:repeat(5,1fr);
-        grid-template-rows:repeat(2,1fr);
-    }
-
-    .burger-thumb{
-        min-height:55px;
-        border-radius:8px;
-    }
-
-    .quantity-stamp{
-        bottom:15px;
-        min-width:145px;
-        padding:9px 15px;
-    }
-
-    .quantity-stamp span{font-size:27px}
-
-    .slider-arrow{
-        top:170px;
-        width:38px;
-        height:38px;
-    }
-
-    .slider-prev{left:12px}
-    .slider-next{right:12px}
-    .slider-dots{bottom:13px}
-
-    .content-section{padding:75px 16px}
-
-    .meal-grid,
-    .budget-grid,
-    .combo-grid,
-    .menu-columns,
-    .branches-grid{grid-template-columns:1fr}
-
-    .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .menu-columns{gap:35px}
-
-    .table-heading{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .table-heading>div{width:100%}
-    .budget-section{padding:75px 16px}
-
-    .section-heading-left{text-align:center}
-    .section-heading-left p{margin-left:auto}
-
-    .cart-notification{
-        left:12px;
-        right:75px;
-        bottom:15px;
-        max-width:none;
-    }
-
-    .whatsapp-float{
-        right:13px;
-        bottom:14px;
-    }
-
-    .whatsapp-float button{
-        width:52px;
-        height:52px;
-        font-size:24px;
-    }
-}
-
-
-        /* === SMALL MOBILE === */
-
-@media(max-width:480px){
-
-    .nav-actions{gap:5px}
-    .brand-logo{font-size:22px}
-
-    .nav-call-btn,
-    .cart-nav-btn,
-    .mobile-menu-btn{
-        width:36px;
-        height:36px;
-        min-height:36px;
-    }
-
-    .hero-content h1{font-size:39px}
-    .hero-content p{font-size:14px}
-
-    .primary-btn,
-    .secondary-btn{
-        width:100%;
-        padding:12px 15px;
-    }
-
-    .deal-slider{min-height:700px}
-
-    .deal-slide{grid-template-rows:300px 1fr}
-    .deal-image-area{min-height:300px}
-    .deal-content{padding:20px}
-    .deal-big-text{font-size:31px}
-    .deal-content p{font-size:12px}
-    .deal-price{font-size:24px}
-
-    .banner-order-btn{
-        flex:1;
-        justify-content:center;
-    }
-
-    .five-burgers,
-    .ten-burgers{gap:3px}
-
-    .burger-thumb{
-        min-height:48px;
-        border-radius:6px;
-        border-width:1px;
-    }
-
-    .mini-grid{grid-template-columns:1fr 1fr}
-    .mini-card{padding:15px 8px}
-
-    .roll-grid,
-    .fries-grid,
-    .two-column-info{grid-template-columns:1fr}
-
-    .menu-item{align-items:flex-start}
-    .menu-item>span{font-size:13px}
-
-    .modal-overlay{padding:10px}
-
-    .modal-box{
-        padding:22px 17px;
-        border-radius:17px;
-    }
-
-    .cart-item{grid-template-columns:1fr}
-    .cart-item-controls{justify-content:flex-start}
-}
-
-
-    /* === MENU CHOICES - ADD ORDER BUTTONS === */
-
-.menu-item>button,
-.roll-card>button,
-.two-column-info button,
-.fries-grid button{
-    padding:8px 14px;
-    border:0;
-    outline:0;
-    border-radius:8px;
-    background:linear-gradient(135deg,#fbbf24,#f59e0b);
-    color:#111;
-    font-family:'Poppins',sans-serif;
-    font-size:12px;
-    font-weight:800;
-    white-space:nowrap;
-    cursor:pointer;
-    transition:all .25s ease;
-    box-shadow:0 4px 12px rgba(251,191,36,.18);
-}
-
-.menu-item>button:hover,
-.roll-card>button:hover,
-.two-column-info button:hover,
-.fries-grid button:hover{
-    background:linear-gradient(135deg,#ffd34d,#fbbf24);
-    transform:translateY(-2px);
-    box-shadow:0 6px 16px rgba(251,191,36,.35);
-}
-
-.menu-item>button:active,
-.roll-card>button:active,
-.two-column-info button:active,
-.fries-grid button:active{transform:scale(.96)}
-
-
-        /* === MOBILE === */
-
-@media(max-width:600px){
-    .menu-item>button,
-    .roll-card>button,
-    .two-column-info button,
-    .fries-grid button{
-        padding:7px 11px;
-        border-radius:7px;
-        font-size:11px;
-    }
-}
-
-
-            /* === BFC PROFESSIONAL CHECKOUT === */
-
-
-    /* === CHECKOUT MODAL === */
+/* === CHECKOUT === */
 
 .checkout-modal-box{
     width:min(94%,520px);
@@ -1848,12 +1396,7 @@ footer{
     padding:28px;
     background:#fff;
     border-radius:18px;
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
-    scrollbar-width:thin;
 }
-
-
-    /* === CHECKOUT HEADER === */
 
 .checkout-header{text-align:center;margin-bottom:24px}
 
@@ -1865,7 +1408,7 @@ footer{
     align-items:center;
     justify-content:center;
     border-radius:18px;
-    background:linear-gradient(135deg,#fff3d6,#ffe4a3);
+    background:#fff3d6;
     color:#d97706;
     font-size:26px;
     box-shadow:0 8px 20px rgba(245,158,11,.15);
@@ -1874,8 +1417,7 @@ footer{
 .checkout-header h3{
     color:#171717;
     font-size:23px;
-    font-weight:900;
-    letter-spacing:-.3px;
+    font-weight:900
 }
 
 .checkout-header p{
@@ -1885,8 +1427,7 @@ footer{
     line-height:1.5;
 }
 
-
-    /* === DELIVERY / PICKUP === */
+   /* === DELIVERY / PICKUP === */
 
 .checkout-methods{
     display:grid;
@@ -2278,8 +1819,7 @@ footer{
     .final-confirm-btn{width:100%}
 }
 
-
-            /* === PICKUP BRANCHES === */
+/* === PICKUP  BRANCHES === */
 
 .pickup-branch-title{margin-top:8px}
 
@@ -2303,9 +1843,9 @@ footer{
     transition:.2s ease;
 }
 
-.pickup-branch-card:hover{
-    border-color:#f59e0b;
-    background:#fffaf0;
+.pickup-branch-card input{
+    position:absolute;
+    opacity:0;
 }
 
 .pickup-branch-card input{
@@ -2321,7 +1861,6 @@ footer{
     gap:12px;
 }
 
-/* Existing branch-icon selector is reused above; this only overrides it for pickup. */
 .pickup-branch-card .branch-icon{
     width:43px;
     height:43px;
@@ -2329,7 +1868,6 @@ footer{
     border-radius:11px;
     background:#fff3d6;
     color:#d97706;
-    font-size:17px;
 }
 
 .branch-info{
@@ -2338,37 +1876,24 @@ footer{
     gap:4px;
 }
 
-.branch-info strong{color:#222;font-size:13px;font-weight:900}
+.branch-info strong{color:#222;font-size:13px}
 .branch-info span{color:#888;font-size:11px}
 
-.branch-check{
-    color:#ddd;
-    font-size:19px;
-    transition:.2s ease;
-}
-
+.branch-check{color:#ddd;font-size:19px}
 
 /* SELECTED BRANCH */
 
 .pickup-branch-card:has(input:checked){
     border-color:#f59e0b;
-    background:linear-gradient(135deg,#fffaf0,#fff4d6);
-    box-shadow:0 5px 15px rgba(245,158,11,.1);
+    background:#fffaf0;
 }
 
 .pickup-branch-card:has(input:checked) .branch-check{color:#f59e0b}
-.pickup-branch-card:has(input:checked) .branch-icon{
-    background:#f59e0b;
-    color:#fff;
-}
 
 
-        /* === PROFESSIONAL PIZZA MENU  === */
+/* === PIZZA TABLE === */
 
-.pizza-row{
-    cursor:pointer;
-    transition:.25s ease;
-}
+.pizza-row{cursor:pointer}
 
 .pizza-row:hover{background:rgba(251,191,36,.06)}
 
@@ -2399,7 +1924,6 @@ footer{
     color:#111;
     font-size:11px;
     font-weight:800;
-    transition:.2s ease;
 }
 
 .pizza-select-btn:hover{
@@ -2410,7 +1934,7 @@ footer{
 .pizza-mobile-hint{display:none}
 
 
-        /* ===  PIZZA SIZE MODAL  === */
+/* === PIZZA SIZE MODAL === */
 
 .pizza-size-modal-box{width:min(520px,calc(100% - 24px))}
 
@@ -2433,11 +1957,7 @@ footer{
     font-size:27px;
 }
 
-.pizza-select-header h3{
-    color:#fff;
-    font-size:19px;
-    font-weight:800;
-}
+.pizza-select-header h3{color:#fff;font-size:19px}
 
 .pizza-select-header p{
     margin-top:4px;
@@ -2452,7 +1972,6 @@ footer{
     background:rgba(255,255,255,.04);
     color:#888;
     font-size:11px;
-    line-height:1.6;
 }
 
 .pizza-size-list{
@@ -2474,13 +1993,6 @@ footer{
     justify-content:space-between;
     gap:12px;
     text-align:left;
-    transition:.2s ease;
-}
-
-button.pizza-size-option:hover{
-    border-color:#fbbf24;
-    background:rgba(251,191,36,.07);
-    transform:translateY(-1px);
 }
 
 .pizza-size-info{
@@ -2500,35 +2012,220 @@ button.pizza-size-option:hover{
 }
 
 .pizza-size-price strong{color:#fbbf24;font-size:14px}
-.pizza-size-price span{color:#999;font-size:9px;font-weight:700}
-.pizza-size-price i{margin-left:3px}
+.pizza-size-price span{color:#999;font-size:9px}
 
-.pizza-size-option.unavailable{
-    cursor:default;
-    opacity:.5;
-}
 
-.not-available{color:#777;font-size:10px}
+/* === FOOTER === */
 
-.pizza-select-note{
-    margin-top:15px;
-    padding-top:12px;
-    border-top:1px solid rgba(255,255,255,.08);
-    color:#777;
-    font-size:10px;
+footer{
+    padding:50px 20px;
+    border-top:1px solid #1f1f24;
+    background:#0b0b0d;
+    color:#66666e;
+    font-size:12px;
     text-align:center;
 }
 
-.pizza-select-note i{
-    margin-right:4px;
-    color:#fbbf24;
+.footer-logo{
+    margin-bottom:7px;
+    color:#f59e0b;
+    font-family:'Righteous',cursive;
+    font-size:21px;
+}
+
+.hidden{display:none!important}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:1100px){
+
+    .desktop-nav-links{gap:13px}
+    .desktop-nav-links a{font-size:12px}
+
+    .nav-call-btn span{display:none}
+
+    .meal-grid,
+    .budget-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .mini-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .branches-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .deal-slide{grid-template-columns:1fr 1fr}
+    .deal-image-area,
+    .deal-slider{min-height:450px}
 }
 
 
-        /* ===  MOBILE PIZZA TABLEm  === */
+/* =====================================================
+   MOBILE
+===================================================== */
 
-@media(max-width:700px){
+@media(max-width:800px){
 
+    .nav-inner{
+        min-height:65px;
+        padding:10px 14px;
+    }
+
+    .brand-logo{font-size:24px}
+
+    .desktop-nav-links{display:none}
+
+    .nav-call-btn{
+        width:46px;
+        height:46px;
+        min-height:46px;
+        padding:0;
+        border-radius:50%;
+    }
+
+    .nav-call-btn span,
+    .cart-nav-label{display:none}
+
+    .cart-nav-btn{
+        height:46px;
+        min-height:46px;
+        padding:0 16px;
+    }
+
+    .mobile-menu-btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    /* 3 dots menu header ke bilkul neeche */
+    .mobile-menu{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        z-index:1001;
+        display:none;
+        padding:8px 15px 14px;
+        border-top:1px solid #29292f;
+        background:rgba(15,15,18,.98);
+        backdrop-filter:blur(18px);
+        box-shadow:0 15px 30px rgba(0,0,0,.35);
+    }
+
+    .mobile-menu.open{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .mobile-menu a{
+        padding:12px 5px;
+        border-bottom:1px solid #24242a;
+        color:#bbb;
+        font-size:13px;
+        font-weight:700;
+    }
+
+    .mobile-menu a:hover{color:#f59e0b}
+
+    .hero-section{
+        min-height:auto;
+        padding:115px 18px 55px;
+        flex-direction:column;
+        text-align:center;
+        gap:45px;
+    }
+
+    .hero-buttons{justify-content:center}
+    .hero-visual{width:min(78vw,380px)}
+
+    .deal-banner-section{padding:15px 12px 55px}
+
+    .deal-slider{
+        min-height:680px;
+        border-radius:20px;
+    }
+
+    .deal-slide{
+        grid-template-columns:1fr;
+        grid-template-rows:340px 1fr;
+    }
+
+    .deal-image-area{min-height:340px}
+    .deal-content{padding:25px;justify-content:flex-start}
+    .deal-big-text{font-size:38px}
+    .deal-content h2{font-size:34px}
+
+    .five-burgers{grid-template-columns:repeat(5,1fr)}
+
+    .ten-burgers{
+        grid-template-columns:repeat(5,1fr);
+        grid-template-rows:repeat(2,1fr);
+    }
+
+    .burger-thumb{
+        min-height:55px;
+        border-radius:8px;
+    }
+
+    .quantity-stamp{
+        bottom:15px;
+        min-width:145px;
+        padding:9px 15px;
+    }
+
+    .quantity-stamp span{font-size:27px}
+
+    .slider-arrow{
+        top:170px;
+        width:38px;
+        height:38px;
+    }
+
+    .slider-prev{left:12px}
+    .slider-next{right:12px}
+
+    .content-section{padding:75px 16px}
+
+    .meal-grid,
+    .budget-grid,
+    .combo-grid,
+    .menu-columns,
+    .branches-grid{grid-template-columns:1fr}
+
+    .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .menu-columns{gap:35px}
+
+    .table-heading{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .table-heading>div{width:100%}
+
+    .budget-section{padding:75px 16px}
+
+    .section-heading-left{text-align:center}
+    .section-heading-left p{margin-left:auto}
+
+    .cart-notification{
+        left:12px;
+        right:75px;
+        bottom:15px;
+        max-width:none;
+    }
+
+    .whatsapp-float{
+        right:13px;
+        bottom:14px;
+    }
+
+    .whatsapp-float button{
+        width:52px;
+        height:52px;
+        font-size:24px;
+    }
+
+    /* Pizza mobile cards */
     .table-wrapper{overflow:visible!important}
     .table-wrapper table{display:block}
     .table-wrapper thead{display:none}
@@ -2579,11 +2276,6 @@ button.pizza-size-option:hover{
         font-size:9px;
     }
 
-    .pizza-mobile-hint i{
-        margin-left:3px;
-        color:#fbbf24;
-    }
-
     .pizza-price-cell{display:none}
 
     .pizza-order-cell{
@@ -2597,6 +2289,156 @@ button.pizza-size-option:hover{
         padding:6px;
         font-size:10px;
     }
+}
 
-    .pizza-select-btn i{margin-right:3px}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media(max-width:480px){
+
+    .nav-actions{gap:5px}
+    .brand-logo{font-size:22px}
+
+    .nav-call-btn,
+    .cart-nav-btn,
+    .mobile-menu-btn{
+        width:36px;
+        height:36px;
+        min-height:36px;
+    }
+
+    .cart-nav-btn{
+            width:auto;
+    min-width:46px;
+    height:42px;
+    min-height:42px;
+    padding:0 12px;
+    }
+
+    .nav-search-btn{
+        width:36px;
+        height:36px;
+        padding:0;
+    }
+
+    .nav-search-btn span{display:none}
+
+    .hero-content h1{font-size:39px}
+    .hero-content p{font-size:14px}
+
+    .primary-btn,
+    .secondary-btn{
+        width:100%;
+        padding:12px 15px;
+    }
+
+    .deal-slider{min-height:700px}
+
+    .deal-slide{grid-template-rows:300px 1fr}
+    .deal-image-area{min-height:300px}
+    .deal-content{padding:20px}
+    .deal-big-text{font-size:31px}
+    .deal-content p{font-size:12px}
+    .deal-price{font-size:24px}
+
+    .banner-order-btn{
+        flex:1;
+        justify-content:center;
+    }
+
+    .five-burgers,
+    .ten-burgers{gap:3px}
+
+    .burger-thumb{
+        min-height:48px;
+        border-radius:6px;
+    }
+
+    .mini-grid{grid-template-columns:1fr 1fr}
+    .mini-card{padding:15px 8px}
+
+    .roll-grid,
+    .fries-grid,
+    .two-column-info{grid-template-columns:1fr}
+
+    .menu-item{align-items:flex-start}
+    .menu-item>span{font-size:13px}
+
+    .modal-overlay{padding:10px}
+
+    .modal-box{
+        padding:22px 17px;
+        border-radius:17px;
+    }
+
+    .cart-item{grid-template-columns:1fr}
+    .cart-item-controls{justify-content:flex-start}
+
+    .checkout-modal-box{
+        width:94%;
+        padding:21px;
+        border-radius:16px;
+    }
+
+    .checkout-icon{
+        width:56px;
+        height:56px;
+    }
+
+    .checkout-header h3{font-size:20px}
+
+    .checkout-methods{gap:10px}
+
+    .checkout-method-btn{
+        min-height:125px;
+        padding:15px 10px;
+    }
+
+    .checkout-method-btn i{
+        width:46px;
+        height:46px;
+        font-size:20px;
+    }
+
+    .checkout-method-btn span{font-size:13px}
+
+    .menu-item>button,
+    .roll-card>button,
+    .two-column-info button,
+    .fries-grid button{
+        padding:7px 11px;
+        font-size:11px;
+    }
+}
+
+
+/* === VERY SMALL MOBILE === */
+
+@media(max-width:380px){
+
+    .checkout-modal-box{padding:17px}
+
+    .checkout-summary{gap:7px}
+
+    .checkout-summary>div{padding:11px}
+
+    .checkout-summary strong{font-size:15px}
+
+    .checkout-method-btn{min-height:115px}
+
+    .checkout-method-btn i{
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .checkout-buttons{flex-direction:column}
+
+    .checkout-back-btn,
+    .confirm-order-btn,
+    .final-confirm-btn{
+        width:100%;
+    }
 }
