@@ -32,8 +32,14 @@
 </div>
 
 <div class="nav-actions">
+
 <button onclick="openCallModal()" class="nav-call-btn">
 <i class="fa-solid fa-phone"></i><span>Call Now</span>
+</button>
+
+<button onclick="openSearchModal()" class="nav-search-btn" aria-label="Search Menu">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span>Search</span>
 </button>
 
 <button onclick="openCartModal()" class="cart-nav-btn" aria-label="Open Cart">
@@ -45,7 +51,6 @@
 <button onclick="toggleMobileMenu()" class="mobile-menu-btn" aria-label="Open Menu">
 <i class="fa-solid fa-bars"></i>
 </button>
-</div>
 
 </div>
 
@@ -59,6 +64,67 @@
 </div>
 </nav>
 
+<!-- ==================== SEARCH MODAL ==================== -->
+ 
+<div id="search-modal" class="modal-overlay search-modal-overlay">
+
+    <div class="modal-box search-modal-box">
+
+        <button
+            onclick="closeSearchModal()"
+            class="modal-close"
+            aria-label="Close Search"
+        >
+            <i class="fa-solid fa-times"></i>
+        </button>
+
+        <div class="search-header">
+
+            <h3 class="modal-title">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search Menu
+            </h3>
+
+            <p class="modal-subtitle">
+                Burger, Pizza, Shawarma, Drinks, Deals etc. search karein
+            </p>
+
+        </div>
+
+        <div class="search-input-wrapper">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="menu-search-input"
+                placeholder="Search burger, pizza, shawarma..."
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="clear-search-btn"
+                onclick="clearMenuSearch()"
+                aria-label="Clear Search"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div id="search-results" class="search-results">
+
+            <div class="search-default-message">
+                <i class="fa-solid fa-utensils"></i>
+                <p>Apna favorite item search karein</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <!-- ==================== CALL MODAL ==================== -->
 <div id="call-modal" class="modal-overlay">
@@ -142,54 +208,369 @@
 </div>
 </div>
 
-
-<!-- ==================== CART MODAL ==================== -->
+<!-- ==================== CART + ORDER MODAL ==================== -->
 <div id="cart-modal" class="modal-overlay">
-<div class="modal-box cart-modal-box">
 
-<button onclick="closeCartModal()" class="modal-close">
-<i class="fa-solid fa-times"></i>
-</button>
+    <div class="modal-box cart-modal-box">
 
-<div class="cart-header">
-<div>
-<h3 class="modal-title">
-<i class="fa-solid fa-basket-shopping"></i>Your Basket
-</h3>
-<p class="modal-subtitle">Aapki selected deals yahan hain</p>
+        <button onclick="closeCartModal()" class="modal-close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- CART HEADER -->
+        <div class="cart-header">
+            <div>
+                <h3 class="modal-title">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    Your Basket
+                </h3>
+
+                <p class="modal-subtitle">
+                    Aapki selected items yahan hain
+                </p>
+            </div>
+
+            <button onclick="clearCart()" class="clear-cart-btn">
+                Clear
+            </button>
+        </div>
+
+        <!-- CART ITEMS -->
+        <div id="cart-items" class="cart-items"></div>
+
+        <!-- EMPTY CART -->
+        <div class="cart-empty" id="cart-empty">
+
+            <i class="fa-solid fa-basket-shopping"></i>
+
+            <h4>Your cart is empty</h4>
+
+            <p>
+                Menu se koi deal ya item add karein.
+            </p>
+
+        </div>
+
+        <!-- CART FOOTER -->
+        <div id="cart-footer" class="cart-footer hidden">
+
+            <div class="cart-total-row">
+                <span>Total</span>
+                <strong id="cart-total-price">Rs. 0</strong>
+            </div>
+
+            <div class="checkout-methods">
+
+                <button
+                    onclick="selectOrderType('delivery')"
+                    class="checkout-method-btn"
+                >
+                    <i class="fa-solid fa-truck"></i>
+                    <span>Delivery</span>
+                </button>
+
+                <button
+                    onclick="selectOrderType('pickup')"
+                    class="checkout-method-btn"
+                >
+                    <i class="fa-solid fa-store"></i>
+                    <span>Pickup</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== ORDER FORM ==================== -->
+        <div id="order-form-section" class="order-form-section hidden">
+
+            <div class="order-form-heading">
+
+                <span class="order-form-icon">
+                    <i class="fa-solid fa-receipt"></i>
+                </span>
+
+                <div>
+                    <h3>Complete Your Order</h3>
+                    <p>Apni details enter karein</p>
+                </div>
+
+            </div>
+
+
+            <!-- ORDER TYPE -->
+            <div class="selected-order-type">
+
+                <div class="selected-order-type-icon">
+                    <i id="order-type-icon" class="fa-solid fa-truck"></i>
+                </div>
+
+                <div>
+                    <small>Order Type</small>
+                    <strong id="selected-order-type-text">
+                        Delivery
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOMER NAME -->
+            <div class="order-input-group">
+
+                <label for="customer-name">
+                    <i class="fa-solid fa-user"></i>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="customer-name"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+            <div class="order-input-group">
+
+                <label for="customer-phone">
+                    <i class="fa-solid fa-phone"></i>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="customer-phone"
+                    placeholder="03XX-XXXXXXX"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL OPTIONAL -->
+            <div class="order-input-group">
+
+                <label for="customer-email">
+                    <i class="fa-solid fa-envelope"></i>
+                    Email
+                    <span class="optional-label">Optional</span>
+                </label>
+
+                <input
+                    type="email"
+                    id="customer-email"
+                    placeholder="example@email.com"
+                    autocomplete="email"
+                >
+
+                <small class="input-hint">
+                    Email dene par order confirmation email receive hogi.
+                </small>
+
+            </div>
+
+
+            <!-- DELIVERY ADDRESS -->
+            <div
+                id="delivery-address-group"
+                class="order-input-group"
+            >
+
+                <label for="customer-address">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Delivery Address
+                </label>
+
+                <textarea
+                    id="customer-address"
+                    rows="3"
+                    placeholder="Apna complete delivery address likhein"
+                ></textarea>
+
+            </div>
+
+
+            <!-- PICKUP BRANCH -->
+            <div
+                id="pickup-branch-group"
+                class="order-input-group hidden"
+            >
+
+                <label for="pickup-branch">
+                    <i class="fa-solid fa-store"></i>
+                    Select Pickup Branch
+                </label>
+
+                <select id="pickup-branch">
+
+                    <option value="">
+                        Select Branch
+                    </option>
+
+                    <option value="Branch 1 - Housing Colony">
+                        Branch 1 - Housing Colony
+                    </option>
+
+                    <option value="Branch 2 - Sadar Chowk">
+                        Branch 2 - Sadar Chowk
+                    </option>
+
+                    <option value="Branch 3 - Joiyan Wala Mor">
+                        Branch 3 - Joiyan Wala Mor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ORDER SUMMARY -->
+            <div class="order-summary-box">
+
+                <div class="order-summary-heading">
+                    <span>
+                        <i class="fa-solid fa-list-check"></i>
+                        Order Summary
+                    </span>
+                </div>
+
+                <div id="order-summary-items"></div>
+
+                <div class="order-summary-total">
+
+                    <span>Total</span>
+
+                    <strong id="order-summary-total">
+                        Rs. 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT ORDER -->
+            <button
+                type="button"
+                id="confirm-order-btn"
+                onclick="confirmOrder()"
+                class="confirm-order-btn"
+            >
+
+                <span class="confirm-order-normal">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Confirm Order
+                </span>
+
+                <span
+                    class="confirm-order-loading hidden"
+                    id="confirm-order-loading"
+                >
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    Processing Order...
+                </span>
+
+            </button>
+
+
+            <button
+                type="button"
+                onclick="backToCart()"
+                class="back-to-cart-btn"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Cart
+            </button>
+
+        </div>
+
+
+        <!-- ==================== ORDER SUCCESS ==================== -->
+        <div
+            id="order-success-section"
+            class="order-result-section hidden"
+        >
+
+            <div class="success-animation">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h3>Order Confirmed! 🎉</h3>
+
+            <p>
+                Aapka order successfully receive ho gaya hai.
+            </p>
+
+            <div class="order-id-box">
+
+                <span>Order ID</span>
+
+                <strong id="success-order-id">
+                    BFC-000000
+                </strong>
+
+            </div>
+
+            <div class="success-status">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Order Status: Success</span>
+            </div>
+
+            <button
+                onclick="closeCartModal()"
+                class="success-close-btn"
+            >
+                Done
+            </button>
+
+        </div>
+
+
+        <!-- ==================== ORDER CLOSED / BUSINESS HOURS ==================== -->
+        <div
+            id="order-closed-section"
+            class="order-result-section hidden"
+        >
+
+            <div class="closed-animation">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <h3>Order Not Available</h3>
+
+            <p>
+                Sorry! Abhi online orders available nahi hain.
+            </p>
+
+            <div class="business-hours-box">
+
+                <i class="fa-solid fa-store"></i>
+
+                <div>
+                    <span>Business Hours</span>
+                    <strong>11:00 AM – 1:00 AM</strong>
+                </div>
+
+            </div>
+
+            <button
+                onclick="closeCartModal()"
+                class="success-close-btn"
+            >
+                Okay
+            </button>
+
+        </div>
+
+    </div>
 </div>
-
-<button onclick="clearCart()" class="clear-cart-btn">Clear</button>
-</div>
-
-<div id="cart-items" class="cart-items"></div>
-
-<div class="cart-empty" id="cart-empty">
-<i class="fa-solid fa-basket-shopping"></i>
-<h4>Your cart is empty</h4>
-<p>Menu se koi deal ya item add karein.</p>
-</div>
-
-<div id="cart-footer" class="cart-footer hidden">
-<div class="cart-total-row">
-<span>Total</span>
-<strong id="cart-total-price">Rs. 0</strong>
-</div>
-
-<div class="checkout-methods">
-<button onclick="selectOrderType('delivery')" class="checkout-method-btn">
-<i class="fa-solid fa-truck"></i><span>Delivery</span>
-</button>
-
-<button onclick="selectOrderType('pickup')" class="checkout-method-btn">
-<i class="fa-solid fa-store"></i><span>Pickup</span>
-</button>
-</div>
-</div>
-
-</div>
-</div>
-
 
 <!-- ==================== HOME / MEGA DEAL SLIDER ==================== -->
 <section id="home" class="deal-banner-section">
@@ -459,7 +840,7 @@ Add to Cart <i class="fa-solid fa-arrow-right"></i>
 <!-- Meal 10 -->
 <div class="meal-card scale-up">
 <span class="meal-label">Meal 10</span>
-<div class="meal-icon">
+<div class="meal-icon">🍕
     <img src="Meal 10.jpeg">
 </div>
 <h3>Double Medium Pizza Deal</h3>
