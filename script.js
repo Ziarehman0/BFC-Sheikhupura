@@ -18,7 +18,7 @@ const BFC_CONFIG = {
     lastOrderTimeKey: "bfcLastOrderTime",
 
     googleSheetURL:
-        "https://script.google.com/macros/s/AKfycbzNXxOuy9P5RDTCm9q8LCtCCT16rzYit3iRQ-v-IHdk-KucQyUMqtNOkUdNYGfskK3G/exec",
+        "https://script.google.com/macros/s/AKfycbyI2XypJh58M7lRoaycH9Um2VJnNUBs55wYUi3F9aNIvP6ayHMcRuQDm9HLoDz0GgKL/exec",
 
     statusCheckInterval: 8000,
     orderSubmitLockTime: 15000
@@ -919,21 +919,88 @@ function showCustomerDetails() {
             ${
                 isDelivery
                     ? `
+                        <!-- Box 1: Fixed City -->
                         <div class="checkout-field">
+                            <label style="display:block; margin:0 0 7px 2px; color:#333; font-size:12px; font-weight:800;">City</label>
+                            <input type="text" value="Sheikhupura" disabled class="disabled-city-input" style="width:100%; padding:13px 14px; border:1.5px solid #dedede; border-radius:11px; outline:0; background:#f1f1f1 !important; color:#666 !important; font-weight:700; cursor:not-allowed; font-size:13px;">
+                        </div>
 
-                            <label for="customer-address">
-                                Delivery Address *
-                            </label>
+                        <!-- Box 2: Famous/Local Areas Dropdown -->
+                        <div class="checkout-field">
+                            <label for="customer-area" style="display:block; margin:0 0 7px 2px; color:#333; font-size:12px; font-weight:800;">Select Area *</label>
+                            <select id="customer-area" class="address-dropdown-select" style="width:100%; padding:13px 14px; border:1.5px solid #dedede; border-radius:11px; outline:0; background:#fafafa; color:#222; font-size:13px; cursor:pointer;">
+                                <option value="">-- Select Your Area --</option>
+                                <option value="Ahata Waqeel Wala">Ahata Waqeel Wala</option>
+                                <option value="Akhterabad">Akhterabad</option>
+                                <option value="Al-Halal Town">Al-Halal Town</option>
+                                <option value="Aryain Wala">Aryain Wala</option>
+                                <option value="Bal">Bal</option>
+                                <option value="Bamban kalan">Bamban kalan</option>
+                                <option value="Bhatti Dhilwari">Bhatti Dhilwari</option>
+                                <option value="Chichoki Mallian">Chichoki Mallian</option>
+                                <option value="Deoriwala">Deoriwala</option>
+                                <option value="Dhewriwala">Dhewriwala</option>
+                                <option value="Faisal Town">Faisal Town</option>
+                                <option value="Ferozwatwa">Ferozwatwa</option>
+                                <option value="Ghanta Ghar">Ghanta Ghar</option>
+                                <option value="Golanki Mallian">Golanki Mallian</option>
+                                <option value="Hanjran Wala">Hanjran Wala</option>
+                                <option value="Housing Colony">Housing Colony</option>
+                                <option value="Housing Colony Phase 2">Housing Colony Phase 2</option>
+                                <option value="Iqbal Town">Iqbal Town</option>
+                                <option value="Islampura">Islampura</option>
+                                <option value="Javed Nagar">Javed Nagar</option>
+                                <option value="Jhabran">Jhabran</option>
+                                <option value="Jinnah Park">Jinnah Park</option>
+                                <option value="Joiyanwala Mor">Joiyanwala Mor</option>
+                                <option value="Khanpur">Khanpur</option>
+                                <option value="Kathianwala">Kathianwala</option>
+                                <option value="Khairpur Mallian">Khairpur Mallian</option>
+                                <option value="Khokharki Mallian">Khokharki Mallian</option>
+                                <option value="Labour Colony">Labour Colony</option>
+                                <option value="Ladheke Mallian">Ladheke Mallian</option>
+                                <option value="Loona Park">Loona Park</option>
+                                <option value="Malian Kalan">Malian Kalan</option>
+                                <option value="Mandiala Virkan">Mandiala Virkan</option>
+                                <option value="Mansoorabad">Mansoorabad</option>
+                                <option value="Machikay">Machikay</option>
+                                <option value="Monnoo Pur">Monnoo Pur</option>
+                                <option value="Mojuke Mallian">Mojuke Mallian</option>
+                                <option value="Nashaman Park">Nashaman Park</option>
+                                <option value="New Khan Colony">New Khan Colony</option>
+                                <option value="Qadirabad">Qadirabad</option>
+                                <option value="Qiam Pur">Qiam Pur</option>
+                                <option value="Ram Garh">Ram Garh</option>
+                                <option value="Rasool Pura">Rasool Pura</option>
+                                <option value="Rasool Town">Rasool Town</option>
+                                <option value="Rehman Pura">Rehman Pura</option>
+                                <option value="Sadar Chowk">Sadar Chowk</option>
+                                <option value="Saikham">Saikham</option>
+                                <option value="Sahoki Mallian">Sahoki Mallian</option>
+                                <option value="Saranawala">Saranawala</option>
+                                <option value="Shah Colony">Shah Colony</option>
+                                <option value="Shahbaz Pura">Shahbaz Pura</option>
+                                <option value="Shesh Mahal">Shesh Mahal</option>
+                                <option value="Sultan Pura">Sultan Pura</option>
+                                <option value="Tibbi Harya">Tibbi Harya</option>
+                                <option value="Zia Colony">Zia Colony</option>
+                                <option value="Others">Others (Mention below)</option>
+                                
+                            </select>
+                        </div>
 
+                        <!-- Box 3: Exact Address Description -->
+                        <div class="checkout-field">
+                            <label for="customer-address" style="display:block; margin:0 0 7px 2px; color:#333; font-size:12px; font-weight:800;">House / Street Address *</label>
                             <textarea
                                 id="customer-address"
                                 name="customerAddress"
-                                rows="3"
-                                placeholder="Enter complete delivery address"
+                                rows="2"
+                                placeholder="Apna complete house number, street number ya landmark likhein"
                                 autocomplete="street-address"
                                 maxlength="500"
-                            >${escapeHtml(checkoutData.address)}</textarea>
-
+                                style="width:100%; padding:13px 14px; border:1.5px solid #dedede; border-radius:11px; outline:0; background:#fafafa; color:#222; font-size:13px; min-height:75px; resize:vertical; line-height:1.5;"
+                            >${escapeHtml(checkoutData.address || "")}</textarea>
                         </div>
                     `
                     : renderPickupBranches()
@@ -1090,6 +1157,9 @@ function confirmCustomerDetails() {
 
     const addressElement =
         content.querySelector("#customer-address");
+        
+    const areaElement =
+        content.querySelector("#customer-area");
 
     const name =
         nameElement?.value?.trim() || "";
@@ -1100,8 +1170,12 @@ function confirmCustomerDetails() {
     const email =
         emailElement?.value?.trim() || "";
 
-    const address =
+    const streetAddress =
         addressElement?.value?.trim() || "";
+
+    const selectedArea =
+        areaElement?.value || "";
+
 
     if (!name) {
         showProfessionalAlert(
@@ -1150,19 +1224,35 @@ function confirmCustomerDetails() {
         return;
     }
 
-    if (
-        checkoutData.orderType === "delivery" &&
-        !address
-    ) {
-        showProfessionalAlert(
-            "Address Required",
-            "Please enter your complete delivery address.",
-            "warning"
-        );
-
-        addressElement?.focus();
-        return;
+        if (checkoutData.orderType === "delivery") {
+        // 1. Area check karna lazmi hai har haal me
+        if (!selectedArea) {
+            showProfessionalAlert(
+                "Area Required",
+                "Please select your local area from the drop-down list.",
+                "warning"
+            );
+            areaElement?.focus();
+            return;
+        }
+        
+        // 2. Agar "Others" select kiya hai, to address text field compulsory ho jaye
+        if (selectedArea === "Others" && !streetAddress) {
+            showProfessionalAlert(
+                "Address Required",
+                "Since you selected 'Others', please write your complete area and street address description below.",
+                "warning"
+            );
+            addressElement?.focus();
+            return;
+        }
     }
+
+    // Data packaging standard formats matching your Google Sheet setup
+    const addressDetailsText = streetAddress ? `, Address: ${streetAddress}` : "";
+    const address = checkoutData.orderType === "delivery" 
+        ? `Sheikhupura, Area: ${selectedArea}${addressDetailsText}` 
+        : "";
 
     let pickupBranch = "";
     let pickupBranchAddress = "";
@@ -1585,41 +1675,24 @@ function buildOrderObject() {
         )
         .join(" | ");
 
+    const isDelivery = checkoutData.orderType === "delivery";
+
     return {
         orderId: generateOrderId(),
-
         name: checkoutData.name,
-
-        number: checkoutData.phone,
-
+        number: checkoutData.phone, 
         email: checkoutData.email || "",
-
-        address:
-            checkoutData.orderType === "delivery"
-                ? checkoutData.address
-                : "",
-
+        address: isDelivery ? checkoutData.address : "",
         type: checkoutData.orderType,
-
-        branch:
-            checkoutData.orderType === "pickup"
-                ? checkoutData.pickupBranch
-                : getDeliveryBranch(),
-
-        branchAddress:
-            checkoutData.orderType === "pickup"
-                ? checkoutData.pickupBranchAddress
-                : "",
-
+        branch: isDelivery ? "" : checkoutData.pickupBranch,
+        branchAddress: isDelivery ? "" : checkoutData.pickupBranchAddress,
         food,
-
         amount: getCartTotal(),
-
         status: "Pending",
-
         createdAt: new Date().toISOString()
     };
 }
+
 
 
 /* =========================================================
@@ -1686,19 +1759,16 @@ async function submitOrderToGoogleSheet(order) {
     const payload = {
         OrderID: order.orderId,
         Name: order.name,
-        Phone: order.number,
+        Number: order.number, 
         Email: order.email,
         Address: order.address,
-        OrderType: order.type,
+        Type: order.type,
         Branch: order.branch,
-        BranchAddress: order.branchAddress,
         Food: order.food,
-        Amount: order.amount,
-        Status: "Pending",
-        CreatedAt: order.createdAt
+        Amount: order.amount
     };
 
-    console.log("BFC ORDER:", payload);
+    console.log("BFC ORDER SAVING WITH ID:", payload);
 
     await fetch(
         BFC_CONFIG.googleSheetURL,
@@ -1713,7 +1783,6 @@ async function submitOrderToGoogleSheet(order) {
         }
     );
 }
-
 
 /* =========================================================
    ORDER STATUS POLLING
