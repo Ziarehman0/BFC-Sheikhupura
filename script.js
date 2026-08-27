@@ -3042,23 +3042,31 @@ function createBurgerCollage(
 ========================================================= */
 
 function revealElements() {
-    const elements =
-        document.querySelectorAll(
-            ".reveal, .scale-up, .slide-left, .slide-right"
-        );
+    const elements = document.querySelectorAll(
+        ".reveal, .scale-up, .slide-left, .slide-right"
+    );
 
-    const windowHeight =
-        window.innerHeight;
+    const observerOptions = {
+        root: null,
+        // rootMargin ko thora barha diya hai taake screen me enter hone se thora PEHLE hi animation start ho jaye, is se lag feel nahi hota
+        rootMargin: "0px 0px -5% 0px", 
+        threshold: 0.02 // Jaise hi 2% element enter ho, smoothly run ho jaye
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
 
     elements.forEach(element => {
-        if (
-            element.getBoundingClientRect().top <
-            windowHeight - 80
-        ) {
-            element.classList.add("active");
-        }
+        observer.observe(element);
     });
 }
+
 
 
 /* =========================================================
