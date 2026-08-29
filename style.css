@@ -994,20 +994,43 @@ td{
 
 .menu-item{
     min-width:0;
-    padding:16px;
+    padding:0;
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
+    align-items:stretch;
     border:1px solid #29292f;
     border-radius:14px;
     background:#18181c;
+    overflow:hidden;
+}
+
+.menu-item-img{
+    width:100px;
+    height:auto;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.menu-item-body{
+    flex:1;
+    min-width:0;
+    padding:12px 14px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
 }
 
 .menu-item h4{font-size:14px}
 .menu-item p{margin-top:3px;color:#85858d;font-size:11px}
 
-.menu-item>span{
+.menu-item-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.menu-item-footer>span{
     color:#f59e0b;
     font-size:15px;
     font-weight:900;
@@ -1015,17 +1038,43 @@ td{
 }
 
 .roll-grid{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    display:flex;
+    flex-direction:column;
     gap:10px;
 }
 
 .roll-card{
-    padding:14px 8px;
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
     border:1px solid #29292f;
     border-radius:12px;
     background:#18181c;
-    text-align:center;
+}
+
+.roll-card-img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+    flex-shrink:0;
+}
+
+.roll-card-info{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.roll-card-info strong{font-size:13px}
+.roll-card-info span{color:#f59e0b;font-size:12px;font-weight:900}
+
+.roll-card-info>button{
+    align-self:flex-start;
 }
 
 .roll-card strong{display:block;font-size:12px}
@@ -1072,8 +1121,8 @@ td{
 
 /* === ORDER BUTTONS === */
 
-.menu-item>button,
-.roll-card>button,
+.menu-item button,
+.roll-card button,
 .two-column-info button,
 .fries-grid button{
     padding:8px 14px;
@@ -2452,8 +2501,9 @@ footer{
     .fries-grid,
     .two-column-info{grid-template-columns:1fr}
 
-    .menu-item{align-items:flex-start}
-    .menu-item>span{font-size:13px}
+    .menu-item-img{width:80px}
+    .menu-item-footer{flex-wrap:wrap}
+    .menu-item-footer>span{font-size:13px}
 
     .modal-overlay{padding:10px}
 
